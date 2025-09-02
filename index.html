@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Players Shop | Quality Pre-Owned Golf Equipment</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a472a;
+            --secondary: #2e8b57;
+            --accent: #f8f9fa;
+            --text: #333;
+            --light: #f8f9fa;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        .navbar {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px 0;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+        
+        .nav-link {
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-link:hover {
+            color: var(--secondary);
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1535131749006-b7f58c99034b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 120px 0;
+            text-align: center;
+        }
+        
+        .hero-tagline {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            border-color: var(--primary);
+            padding: 12px 30px;
+            font-weight: 600;
+            border-radius: 30px;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary);
+            border-color: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+        
+        .club-card {
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-bottom: 30px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .club-card .card-body {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 1.25rem;
+        }
+        
+        .club-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .club-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+        
+        .club-condition {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .condition-excellent {
+            background-color: #e6f7ee;
+            color: #28a745;
+        }
+        
+        .condition-good {
+            background-color: #e6f2ff;
+            color: #0066cc;
+        }
+        
+        .club-price {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.4rem;
+        }
+        
+        .carousel-control-prev, .carousel-control-next {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 1;
+            position: absolute;
+            z-index: 10;
+        }
+        
+        .carousel-control-prev {
+            left: -25px;
+        }
+        
+        .carousel-control-next {
+            right: -25px;
+        }
+        
+        .carousel-container {
+            position: relative;
+            padding: 0 60px;
+        }
+        
+        @media (max-width: 768px) {
+            .carousel-container {
+                padding: 0;
+            }
+            
+            .carousel-inner {
+                overflow: visible;
+            }
+            
+            .carousel-item {
+                display: block !important;
+                margin-right: 0 !important;
+                margin-bottom: 30px;
+            }
+            
+            .carousel-item.active {
+                display: block !important;
+            }
+            
+            .carousel-control-prev,
+            .carousel-control-next {
+                display: none !important;
+            }
+            
+            .carousel-item .row {
+                flex-direction: column;
+            }
+            
+            .carousel-item .col-md-4 {
+                max-width: 100%;
+                flex: 0 0 100%;
+                margin-bottom: 20px;
+            }
+        }
+        
+        .features-section {
+            background-color: var(--accent);
+            padding: 80px 0;
+        }
+        
+        .feature-box {
+            text-align: center;
+            padding: 30px;
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+        
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-heading {
+            font-weight: 600;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            margin-right: 15px;
+            transition: color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            color: var(--secondary);
+        }
+        
+        @media (max-width: 768px) {
+            .hero-tagline {
+                font-size: 2rem;
+            }
+            
+            .feature-box {
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-golf-ball me-2"></i>Players Shop
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="inventory.html">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <h1 class="hero-tagline">Quality pre-owned golf clubs, priced right.</h1>
+                    <a href="inventory.html" class="btn btn-primary btn-lg">Shop All Clubs</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Clubs Section -->
+    <section class="py-5">
+        <div class="container py-5">
+            <h2 class="section-title">Featured Clubs</h2>
+            
+            <div class="carousel-container">
+            <div id="featuredClubsCarousel" class="carousel slide d-md-block d-none" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="row">
+                            <!-- Club 1 -->
+                            <div class="col-md-4 mb-4">
+                                <div class="card club-card">
+                                    <img src="C:\Users\brend\OneDrive\Documents\Lee Archary\539265340_10165810738659428_8904968727614634958_n.jpg" class="card-img-top club-img" alt="TaylorMade Driver">
+                                    <div class="card-body">
+                                        <span class="club-condition condition-excellent">Excellent</span>
+                                        <h5 class="card-title mt-2">Srixon Ultra Light stand Bag</h5>
+                                        <p class="card-text">Used – like new | Original rain cover</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span class="club-price">R2800</span>
+                                            <a href="#" class="btn btn-sm btn-outline-primary">Details</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Club 2 -->
+                            <div class="col-md-4 mb-4">
+                                <div class="card club-card">
+                                    <img src="C:\Users\brend\OneDrive\Documents\Lee Archary\539898659_10165810580484428_6550035568777459229_n.jpg" class="card-img-top club-img" alt="Titleist Irons">
+                                    <div class="card-body">
+                                        <span class="club-condition condition-good">Good</span>
+                                        <h5 class="card-title mt-2">Ping i15 Irons 4-PW</h5>
+                                        <p class="card-text">Orange dots  | Regular Flex | New grips</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span class="club-price">R4300</span>
+                                            <a href="#" class="btn btn-sm btn-outline-primary">Details</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Club 3 -->
+                            <div class="col-md-4 mb-4">
+                                <div class="card club-card">
+                                    <img src="C:\Users\brend\OneDrive\Documents\Lee Archary\539915069_10165815111074428_361989854479576724_n.jpg" class="card-img-top club-img" alt="Odyssey Putter">
+                                    <div class="card-body">
+                                        <span class="club-condition condition-excellent">Good</span>
+                                        <h5 class="card-title mt-2">Titleist T100 Irons 4-PW</h5>
+                                        <p class="card-text">S300 AMT Tour White Shafts | Multicompound grips</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span class="club-price">R8999</span>
+                                            <a href="#" class="btn btn-sm btn-outline-primary">Details</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-item">
+                        <div class="row">
+                            <!-- Additional clubs would go here in the next carousel slide -->
+                            <div class="col-md-4 mb-4">
+                                <div class="card club-card">
+                                    <img src="C:\Users\brend\OneDrive\Documents\Lee Archary\540714103_10165802710964428_5811250597821614448_n.jpg" class="card-img-top club-img" alt="Callaway Driver">
+                                    <div class="card-body">
+                                        <span class="club-condition condition-good">Good</span>
+                                        <h5 class="card-title mt-2">Callaway Mavrik Driver</h5>
+                                        <p class="card-text">10.5° | Regular Flex | Right Hand</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span class="club-price">R6999</span>
+                                            <a href="#" class="btn btn-sm btn-outline-primary">Details</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 mb-4">
+                                <div class="card club-card">
+                                    <img src="C:\Users\brend\OneDrive\Documents\Lee Archary\540487062_10165807316309428_3361596941911518048_n.jpg" class="card-img-top club-img" alt="Callaway Driver">
+                                    <div class="card-body">
+                                        <span class="club-condition condition-good">Good</span>
+                                        <h5 class="card-title mt-2">Callaway Mavrik Driver</h5>
+                                        <p class="card-text">10.5° | Regular Flex | Right Hand</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span class="club-price">R2999</span>
+                                            <a href="#" class="btn btn-sm btn-outline-primary">Details</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-4 mb-4">
+                                <div class="card club-card">
+                                    <img src="C:\Users\brend\OneDrive\Documents\Lee Archary\542689398_10165810910599428_8114956334270186067_n.jpg" class="card-img-top club-img" alt="Callaway Driver">
+                                    <div class="card-body">
+                                        <span class="club-condition condition-good">Good</span>
+                                        <h5 class="card-title mt-2">Callaway Mavrik Driver</h5>
+                                        <p class="card-text">10.5° | Regular Flex | Right Hand</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span class="club-price">R3500</span>
+                                            <a href="#" class="btn btn-sm btn-outline-primary">Details</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Add two more clubs here -->
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="carousel-control-prev" type="button" data-bs-target="#featuredClubsCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#featuredClubsCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+            
+            <!-- Mobile view - Stacked cards -->
+            <div class="d-md-none">
+                <div class="club-card">
+                    <img src="C:\Users\brend\OneDrive\Documents\Lee Archary\539265340_10165810738659428_8904968727614634958_n.jpg" class="card-img-top club-img" alt="Srixon Bag">
+                    <div class="card-body">
+                        <span class="club-condition condition-excellent">Excellent</span>
+                        <h5 class="card-title mt-2">Srixon Ultra Light stand Bag</h5>
+                        <p class="card-text">Used – like new | Original rain cover</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="club-price">R2800</span>
+                            <a href="#" class="btn btn-sm btn-outline-primary">Details</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="club-card">
+                    <img src="C:\Users\brend\OneDrive\Documents\Lee Archary\539898659_10165810580484428_6550035568777459229_n.jpg" class="card-img-top club-img" alt="Ping Irons">
+                    <div class="card-body">
+                        <span class="club-condition condition-good">Good</span>
+                        <h5 class="card-title mt-2">Ping i15 Irons 4-PW</h5>
+                        <p class="card-text">Orange dots | Regular Flex | New grips</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="club-price">R4300</span>
+                            <a href="#" class="btn btn-sm btn-outline-primary">Details</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="club-card">
+                    <img src="C:\Users\brend\OneDrive\Documents\Lee Archary\539915069_10165815111074428_361989854479576724_n.jpg" class="card-img-top club-img" alt="Titleist Irons">
+                    <div class="card-body">
+                        <span class="club-condition condition-excellent">Good</span>
+                        <h5 class="card-title mt-2">Titleist T100 Irons 4-PW</h5>
+                        <p class="card-text">S300 AMT Tour White Shafts | Multicompound grips</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="club-price">R8999</span>
+                            <a href="#" class="btn btn-sm btn-outline-primary">Details</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="club-card">
+                    <img src="C:\Users\brend\OneDrive\Documents\Lee Archary\540714103_10165802710964428_5811250597821614448_n.jpg" class="card-img-top club-img" alt="Callaway Driver">
+                    <div class="card-body">
+                        <span class="club-condition condition-good">Good</span>
+                        <h5 class="card-title mt-2">Callaway Mavrik Driver</h5>
+                        <p class="card-text">10.5° | Regular Flex | Right Hand</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="club-price">R6999</span>
+                            <a href="#" class="btn btn-sm btn-outline-primary">Details</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="club-card">
+                    <img src="C:\Users\brend\OneDrive\Documents\Lee Archary\540487062_10165807316309428_3361596941911518048_n.jpg" class="card-img-top club-img" alt="Callaway Driver">
+                    <div class="card-body">
+                        <span class="club-condition condition-good">Good</span>
+                        <h5 class="card-title mt-2">Callaway Mavrik Driver</h5>
+                        <p class="card-text">10.5° | Regular Flex | Right Hand</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="club-price">R2999</span>
+                            <a href="#" class="btn btn-sm btn-outline-primary">Details</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="club-card">
+                    <img src="C:\Users\brend\OneDrive\Documents\Lee Archary\542689398_10165810910599428_8114956334270186067_n.jpg" class="card-img-top club-img" alt="Callaway Driver">
+                    <div class="card-body">
+                        <span class="club-condition condition-good">Good</span>
+                        <h5 class="card-title mt-2">Callaway Mavrik Driver</h5>
+                        <p class="card-text">10.5° | Regular Flex | Right Hand</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="club-price">R3500</span>
+                            <a href="#" class="btn btn-sm btn-outline-primary">Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <a href="inventory.html" class="btn btn-primary">View All Clubs</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <h2 class="section-title">Why Choose Us</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h4>Quality Inspected</h4>
+                        <p>Every club is thoroughly inspected and rated for condition to ensure you know exactly what you're getting.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <h4>Fair Prices</h4>
+                        <p>We offer competitive pricing on all our pre-owned clubs, making quality equipment accessible to all golfers.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <i class="fas fa-user-check"></i>
+                        </div>
+                        <h4>Trusted Expertise</h4>
+                        <p>Decades of experience in pre-owned golf clubs means you get honest advice and quality recommendations every time.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5 class="footer-heading">Players Shop</h5>
+                    <p>Providing quality pre-owned golf clubs at fair prices since 2020.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5 class="footer-heading">Quick Links</h5>
+                    <div class="footer-links">
+                        <a href="#">Home</a>
+                        <a href="#">Shop</a>
+                        <a href="#">About Us</a>
+                        <a href="#">Contact</a>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5 class="footer-heading">Categories</h5>
+                    <div class="footer-links">
+                        <a href="#">Drivers</a>
+                        <a href="#">Irons</a>
+                        <a href="#">Putters</a>
+                        <a href="#">Wedges</a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5 class="footer-heading">Contact Us</h5>
+                    <p><i class="fas fa-envelope me-2"></i> info@playersshop.com</p>
+                    <p><i class="fas fa-phone me-2"></i> (123) 456-7890</p>
+                    <p><i class="fas fa-map-marker-alt me-2"></i> Local pickup available by appointment</p>
+                </div>
+            </div>
+            <hr class="mt-4 mb-4" style="border-color: rgba(255,255,255,0.1);">
+            <div class="text-center">
+                <p>© 2023 Players Shop. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
